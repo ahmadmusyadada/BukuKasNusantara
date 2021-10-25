@@ -41,6 +41,13 @@ public class PemasukanActivity extends AppCompatActivity implements DatePickerDi
                 showDatePickerDialog();
             }
         });
+
+        kembali.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void showDatePickerDialog(){

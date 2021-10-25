@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "bkn.db";
     public static final String TABLE__NAME = "akun";
+    public static final String TABLE__NAME__CASHFLOW = "cashflow";
     public static final String COL_1 = "ID";
     public static final String COL_2 = "username";
     public static final String COL_3 = "password";
@@ -26,16 +27,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE akun (ID INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)");
-
+        sqLiteDatabase.execSQL("CREATE TABLE cashflow (ID INTEGER PRIMARY KEY AUTOINCREMENT, tanggal TEXT, nominal TEXT, keterangan TEXT)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE__NAME);
         onCreate(sqLiteDatabase);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE__NAME__CASHFLOW);
+        onCreate(sqLiteDatabase);
     }
 
     public long addUser(String user, String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("username", user);
+        contentValues.put("password", password);
+        long res = db.insert("akun", null, contentValues);
+        db.close();
+        return res;
+    }
+
+    public long addData(String user, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", user);

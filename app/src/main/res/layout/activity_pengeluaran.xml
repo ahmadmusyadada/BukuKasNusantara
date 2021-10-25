@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".PengeluaranActivity">
 
+    <ImageView
+        android:id="@+id/iv_date_pengeluaran"
+        android:layout_width="51dp"
+        android:layout_height="46dp"
+        app:layout_constraintBottom_toBottomOf="@+id/et_date_pengeluaran"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/et_date_pengeluaran"
+        app:layout_constraintTop_toTopOf="@+id/et_date_pengeluaran"
+        app:srcCompat="@drawable/pikpng_com_calendar_icon_png_537316" />
+
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
@@ -27,9 +37,9 @@
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <EditText
-        android:id="@+id/editTextDate2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/et_date_pengeluaran"
+        android:layout_width="315dp"
+        android:layout_height="45dp"
         android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="date"
@@ -44,10 +54,10 @@
         android:layout_marginTop="20dp"
         android:text="Nominal:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate2" />
+        app:layout_constraintTop_toBottomOf="@+id/et_date_pengeluaran" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/et_nominal_pengeluaran"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -65,10 +75,10 @@
         android:layout_marginTop="20dp"
         android:text="Keterangan:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+        app:layout_constraintTop_toBottomOf="@+id/et_nominal_pengeluaran" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/et_keterangan_pengeluaran"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -79,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btn_simpan_pengeluaran"
         android:layout_width="377dp"
         android:layout_height="43dp"
         android:layout_marginTop="40dp"
@@ -87,15 +97,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+        app:layout_constraintTop_toBottomOf="@+id/et_keterangan_pengeluaran" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/btn_kembali_pengeluaran"
         android:layout_width="379dp"
         android:layout_height="47dp"
         android:layout_marginTop="8dp"
         android:text="Kembali"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_simpan_pengeluaran" />
 </androidx.constraintlayout.widget.ConstraintLayout>
