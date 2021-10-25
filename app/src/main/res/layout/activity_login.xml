@@ -15,7 +15,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/seekpng_com_book_logo_png_2886384___copy" />
+        app:srcCompat="@drawable/seekpng_com_book_logo_png_2886384__blue_" />
 
     <EditText
         android:id="@+id/etUsername"
@@ -23,8 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
         android:ems="10"
+        android:hint="Username"
         android:inputType="textPersonName"
-        android:text="Username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
