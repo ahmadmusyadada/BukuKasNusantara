@@ -10,6 +10,7 @@ import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -17,9 +18,12 @@ public class PemasukanActivity extends AppCompatActivity implements DatePickerDi
     EditText tanggal, nominal, keterangan;
     ImageView tanggalButton;
     Button simpan, kembali;
+//    DatabaseHelper db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        db = new DatabaseHelper(this);
         setContentView(R.layout.activity_pemasukan);
         tanggal = findViewById(R.id.et_date);
         nominal = findViewById(R.id.et_nominal);
@@ -39,6 +43,19 @@ public class PemasukanActivity extends AppCompatActivity implements DatePickerDi
             @Override
             public void onClick(View view) {
                 showDatePickerDialog();
+            }
+        });
+
+        simpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatabaseHelper db = new DatabaseHelper(PemasukanActivity.this);
+                String tanggals = tanggal.getText().toString().trim();
+                String nominals = nominal.getText().toString().trim();
+                String keterangans = keterangan.getText().toString().trim();
+                db.addData(tanggals, nominals, keterangans, "pemasukan");
+//                Toast.makeText(PemasukanActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
 

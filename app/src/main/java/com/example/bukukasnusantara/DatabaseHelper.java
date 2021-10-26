@@ -7,11 +7,13 @@ import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+    private Context context;
     public static final String DATABASE_NAME = "bkn.db";
     public static final String TABLE__NAME = "akun";
     public static final String TABLE__NAME__CASHFLOW = "cashflow";
@@ -22,12 +24,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
+        this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE akun (ID INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)");
-        sqLiteDatabase.execSQL("CREATE TABLE cashflow (ID INTEGER PRIMARY KEY AUTOINCREMENT, tanggal TEXT, nominal TEXT, keterangan TEXT)");
+        sqLiteDatabase.execSQL("CREATE TABLE cashflow (ID INTEGER PRIMARY KEY AUTOINCREMENT, tanggal TEXT, nominal TEXT, keterangan TEXT, kategori TEXT)");
     }
 
     @Override
@@ -48,12 +51,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public long addData(String user, String password) {
+    public long addData(String tanggal, String nominal, String keterangan, String kategori) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("username", user);
-        contentValues.put("password", password);
-        long res = db.insert("akun", null, contentValues);
+        contentValues.put("tanggal", tanggal);
+        contentValues.put("nominal", nominal);
+        contentValues.put("keterangan", keterangan);
+        contentValues.put("kategori", kategori);
+        long res = db.insert("cashflow", null, contentValues);
+        if (res == -1) {
+            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Sucess", Toast.LENGTH_SHORT).show();
+        }
         db.close();
         return res;
     }
@@ -85,5 +95,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } else {
             return false;
         }
+    }
+
+    Cursor readAllData(){
+        String query = "SELECT * FROM " + TABLE__NAME__CASHFLOW;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if (db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
     }
 }

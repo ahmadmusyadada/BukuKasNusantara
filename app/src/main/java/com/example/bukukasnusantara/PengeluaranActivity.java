@@ -42,6 +42,19 @@ public class PengeluaranActivity extends AppCompatActivity implements DatePicker
             }
         });
 
+        simpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatabaseHelper db = new DatabaseHelper(PengeluaranActivity.this);
+                String tanggals = tanggal.getText().toString().trim();
+                String nominals = nominal.getText().toString().trim();
+                String keterangans = keterangan.getText().toString().trim();
+                db.addData(tanggals, nominals, keterangans, "pengeluaran");
+//                Toast.makeText(PemasukanActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+
         kembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
