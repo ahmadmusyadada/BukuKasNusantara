@@ -165,8 +165,8 @@ public class MainActivity extends AppCompatActivity {
             }
             long second = date.getTime();
             int dateTemp = Integer.parseInt(originalFormat.format(date));
-            int dateNowAwalBulan = dateNowInt*100; //2021100
-            int dateNowAkhirBulan = (dateNowInt*100)+100;  //2021100 > 20211200
+            int dateNowAwalBulan = dateNowInt*100; //20211100
+            int dateNowAkhirBulan = (dateNowInt*100)+100;  //20211100 > 20211200
             Log.d("Awal", String.valueOf(dateNowAwalBulan));
             Log.d("Akhir", String.valueOf(dateNowAkhirBulan));
             Log.d("DAteTemp", String.valueOf(dateTemp));
