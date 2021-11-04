@@ -6,11 +6,13 @@ import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private Context context;
@@ -30,6 +32,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE akun (ID INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)");
+//        sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("username", "user");
+        contentValues.put("password", "user");
+        long res = sqLiteDatabase.insert("akun", null, contentValues);
+        if (res == -1) {
+            Toast.makeText(context, "Failed make akun", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Sucess make akun", Toast.LENGTH_SHORT).show();
+        }
+//        sqLiteDatabase.close();
         sqLiteDatabase.execSQL("CREATE TABLE cashflow (ID INTEGER PRIMARY KEY AUTOINCREMENT, tanggal TEXT, nominal TEXT, keterangan TEXT, kategori TEXT)");
     }
 
@@ -78,7 +91,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
 
-
         if (count>0)
             return true;
         else
@@ -107,4 +119,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return cursor;
     }
+
+    public boolean changePassword(String oldPass, String newPass) {
+        String[] columns = { COL_1} ;
+        SQLiteDatabase db = getReadableDatabase();
+        String selection = COL_2 + "=?" + " and " + COL_3 + "=?";
+        String[] selectionArgs = { "user", oldPass };
+        Cursor cursor = db.query(TABLE__NAME, columns, selection, selectionArgs, null, null, null);
+        int count = cursor.getCount();
+        cursor.close();
+//        db.close();
+
+        if (count==0) {
+            return false;
+        } else {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("password", newPass);
+            long res = db.update(TABLE__NAME, contentValues, "username = ?", new String[]{"user"});
+            if (res == -1) {
+                Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context, "Sucess", Toast.LENGTH_SHORT).show();
+            }
+            db.close();
+            return true;
+        }
+    }
+
+//    public void insertToData(long valX, int valY){
+//        SQLiteDatabase database = this.getWritableDatabase();
+//        ContentValues contentValues = new ContentValues();
+//
+//        contentValues.put();
+//    }
 }

@@ -73,7 +73,16 @@ public class PengeluaranActivity extends AppCompatActivity implements DatePicker
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth){
-        String date = dayOfMonth + "/" + month + "/" + year;
+        String monthString = String.valueOf(month+1);
+        if (monthString.length() == 1) {
+            monthString = "0" + monthString;
+        }
+        String dayOfMonthString = String.valueOf(dayOfMonth);
+        if (dayOfMonthString.length() == 1) {
+            dayOfMonthString = "0" + dayOfMonthString;
+        }
+
+        String date = dayOfMonthString + "/" + monthString + "/" + year;
         tanggal.setText(date);
     }
 }

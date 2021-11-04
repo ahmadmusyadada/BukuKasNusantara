@@ -18,12 +18,10 @@ public class PemasukanActivity extends AppCompatActivity implements DatePickerDi
     EditText tanggal, nominal, keterangan;
     ImageView tanggalButton;
     Button simpan, kembali;
-//    DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        db = new DatabaseHelper(this);
         setContentView(R.layout.activity_pemasukan);
         tanggal = findViewById(R.id.et_date);
         nominal = findViewById(R.id.et_nominal);
@@ -77,7 +75,16 @@ public class PemasukanActivity extends AppCompatActivity implements DatePickerDi
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth){
-        String date = dayOfMonth + "/" + month + "/" + year;
+        String monthString = String.valueOf(month+1);
+        if (monthString.length() == 1) {
+            monthString = "0" + monthString;
+        }
+        String dayOfMonthString = String.valueOf(dayOfMonth);
+        if (dayOfMonthString.length() == 1) {
+            dayOfMonthString = "0" + dayOfMonthString;
+        }
+
+        String date = dayOfMonthString + "/" + monthString + "/" + year;
         tanggal.setText(date);
     }
 }

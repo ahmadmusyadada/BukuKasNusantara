@@ -23,6 +23,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Tambah Pengeluaran"
+        android:textColor="#FF0000"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,6 +35,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="Tanggal:"
+        android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -42,7 +46,9 @@
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
         android:ems="10"
+        android:hint="24/08/2020"
         android:inputType="date"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
@@ -53,17 +59,22 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="Nominal:"
+        android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_date_pengeluaran" />
 
     <EditText
         android:id="@+id/et_nominal_pengeluaran"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="500000"
-        android:inputType="textPersonName"
+        android:inputType="number"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
@@ -74,17 +85,22 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="Keterangan:"
+        android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_nominal_pengeluaran" />
 
     <EditText
         android:id="@+id/et_keterangan_pengeluaran"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Membayar gaji karyawan"
         android:inputType="textPersonName"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
